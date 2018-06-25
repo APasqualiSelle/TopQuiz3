@@ -52,7 +52,7 @@ private TopGamers mGamers;
             //Fetch the score from the Intent
             int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
             mPreferences.edit().putInt(PREF_KEY_SCORE, score).apply();
-            mGamers.addGamer(mUser.getFirstName(),mLastScore);
+            mGamers.addGamer(mUser.getFirstName(),score);
             mPreferences.edit().putString(PREF_KEY_TOP_JOUEURS,mGamers.toString()).apply();
           mDisplayGreetingTxt.setText(mGamers.toString()+" estou no onActivityResult :-)");
 

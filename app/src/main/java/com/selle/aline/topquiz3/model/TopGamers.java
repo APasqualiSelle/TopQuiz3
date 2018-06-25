@@ -3,7 +3,6 @@ package com.selle.aline.topquiz3.model;
 
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -13,22 +12,22 @@ import java.util.Set;
  */
 public class TopGamers {
 
-    private HashMap<String, Integer> gamersList = new HashMap<>();
+    private HashMap<String, Integer> mGamersList = new HashMap<>();
 
 
     public void addGamer(String firstName, Integer score) {
-        gamersList.put(firstName, score);
+        mGamersList.put(firstName, score);
     }
 
     public String toString() {
 
         String resultat = "";
 
-        Set<String> nameList = gamersList.keySet();
+        Set<String> nameList = mGamersList.keySet();
 
         for (String i : nameList) {
 
-            resultat += i + " : "+ gamersList.get(i);
+            resultat += i + " : "+ mGamersList.get(i)+" point(s).\n";
 
         }
 return resultat;

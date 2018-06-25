@@ -33,7 +33,7 @@ public class TopJoueurs extends AppCompatActivity {
 */
         mGamerList = mPreferencesTopJoueurs.getString(MainActivity.PREF_KEY_TOP_JOUEURS,"Por enquanto ninguém");
         //pour afficher dans le TextView
-         mDisplayPlayerName.setText(mGamerList.toString()+ " points.");
+         mDisplayPlayerName.setText(mGamerList.toString());
 
 
 
