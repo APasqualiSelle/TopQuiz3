@@ -46,6 +46,14 @@
 
         />
 
+    <Button
+        android:id="@+id/activity_main_noms_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="30dp"
+        android:text="Nom"/>
+
 
 
 </LinearLayout>

@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".controller.GameActivity" />
-        <activity android:name=".controller.TopJoueurs"></activity>
+        <activity android:name=".controller.TopJoueurs" />
+        <activity android:name=".controller.Name"></activity>
     </application>
 
 </manifest>

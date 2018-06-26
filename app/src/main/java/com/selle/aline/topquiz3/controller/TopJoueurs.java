@@ -8,11 +8,14 @@ import android.widget.TextView;
 import com.selle.aline.topquiz3.R;
 import com.selle.aline.topquiz3.model.TopGamers;
 
+import java.util.Collections;
+
 public class TopJoueurs extends AppCompatActivity {
 
     public static final String TAG = "TopJoueursActivity";
-    private TextView mDisplayPlayerName;
+    private TextView mDisplayPlayerNameAndScore;
     private SharedPreferences mPreferencesTopJoueurs;
+
     private String mGamerList;
 
     @Override
@@ -20,7 +23,7 @@ public class TopJoueurs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_joueurs);
 
-        mDisplayPlayerName = findViewById(R.id.activity_top_joueur_txt);
+        mDisplayPlayerNameAndScore = findViewById(R.id.activity_top_joueur_txt);
 
         mPreferencesTopJoueurs = getSharedPreferences(MainActivity.PREFERENCES_FILE, MODE_PRIVATE);
 
@@ -33,11 +36,7 @@ public class TopJoueurs extends AppCompatActivity {
 */
         mGamerList = mPreferencesTopJoueurs.getString(MainActivity.PREF_KEY_TOP_JOUEURS,"Por enquanto ninguém");
         //pour afficher dans le TextView
-         mDisplayPlayerName.setText(mGamerList.toString());
-
-
-
-
+         mDisplayPlayerNameAndScore.setText(mGamerList.toString());
 
     }
 }

@@ -3,8 +3,14 @@ package com.selle.aline.topquiz3.model;
 
 
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+
+import static java.util.Collections.*;
 
 
 /**
@@ -12,24 +18,46 @@ import java.util.Set;
  */
 public class TopGamers {
 
-    private HashMap<String, Integer> mGamersList = new HashMap<>();
+    private Map<String, Integer> mGamersNameAndScore = new TreeMap<>();
+    private  List<String>mGamersName = new ArrayList<>();
 
 
-    public void addGamer(String firstName, Integer score) {
-        mGamersList.put(firstName, score);
+    public void addGamerNameAndScore(String firstName, Integer score) {
+        mGamersNameAndScore.put(firstName, score);
+
+        }
+
+    public void addGamerName(String firstName){
+        mGamersName.add(firstName);
+        Collections.sort(mGamersName);
     }
 
     public String toString() {
 
         String resultat = "";
 
-        Set<String> nameList = mGamersList.keySet();
+        Set<String> nameList = mGamersNameAndScore.keySet();
 
         for (String i : nameList) {
 
-            resultat += i + " : "+ mGamersList.get(i)+" point(s).\n";
+            resultat += i + " : "+ mGamersNameAndScore.get(i)+" point(s).\n";
 
         }
 return resultat;
     }
+
+    public String toStringNamePlayers(){
+
+        String resultat = "";
+        for(String i: mGamersName){
+
+            resultat+= i + " ";
+        }
+
+        return resultat;
+
+    }
+
+
+
 }
