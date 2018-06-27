@@ -12,10 +12,8 @@ import java.util.Collections;
 
 public class TopJoueurs extends AppCompatActivity {
 
-    public static final String TAG = "TopJoueursActivity";
     private TextView mDisplayPlayerNameAndScore;
     private SharedPreferences mPreferencesTopJoueurs;
-
     private String mGamerList;
 
     @Override
@@ -25,7 +23,7 @@ public class TopJoueurs extends AppCompatActivity {
 
         mDisplayPlayerNameAndScore = findViewById(R.id.activity_top_joueur_txt);
 
-        mPreferencesTopJoueurs = getSharedPreferences(MainActivity.PREFERENCES_FILE, MODE_PRIVATE);
+        mPreferencesTopJoueurs = getSharedPreferences(MainActivity.PREF_KEY_TOP_JOUEURS, MODE_PRIVATE);
 
        /* //j'ai besoin d'affecter les preferences dans le type String mLastPlayerName
         mLastPlayerName = mPreferencesTopJoueurs.getString(MainActivity.PREF_KEY_FIRST_NAME, "Top Joueurs");
@@ -36,7 +34,7 @@ public class TopJoueurs extends AppCompatActivity {
 */
         mGamerList = mPreferencesTopJoueurs.getString(MainActivity.PREF_KEY_TOP_JOUEURS,"Por enquanto ninguém");
         //pour afficher dans le TextView
-         mDisplayPlayerNameAndScore.setText(mGamerList.toString());
+         mDisplayPlayerNameAndScore.setText(mGamerList);
 
     }
 }

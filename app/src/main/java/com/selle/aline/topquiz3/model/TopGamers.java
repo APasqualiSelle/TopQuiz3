@@ -19,45 +19,24 @@ import static java.util.Collections.*;
 public class TopGamers {
 
     private Map<String, Integer> mGamersNameAndScore = new TreeMap<>();
-    private  List<String>mGamersName = new ArrayList<>();
-
 
     public void addGamerNameAndScore(String firstName, Integer score) {
         mGamersNameAndScore.put(firstName, score);
 
         }
 
-    public void addGamerName(String firstName){
-        mGamersName.add(firstName);
-        Collections.sort(mGamersName);
-    }
-
     public String toString() {
 
         String resultat = "";
 
-        Set<String> nameList = mGamersNameAndScore.keySet();
+        Set<String> nameValue = mGamersNameAndScore.keySet();
 
-        for (String i : nameList) {
+        for (String i : nameValue) {
 
             resultat += i + " : "+ mGamersNameAndScore.get(i)+" point(s).\n";
 
         }
 return resultat;
     }
-
-    public String toStringNamePlayers(){
-
-        String resultat = "";
-        for(String i: mGamersName){
-
-            resultat+= i + " ";
-        }
-
-        return resultat;
-
-    }
-
-
 
 }

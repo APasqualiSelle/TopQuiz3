@@ -2,7 +2,6 @@ package com.selle.aline.topquiz3.controller;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,11 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.selle.aline.topquiz3.R;
+import com.selle.aline.topquiz3.model.GamersNames;
 import com.selle.aline.topquiz3.model.TopGamers;
 import com.selle.aline.topquiz3.model.User;
 
-import java.util.Collections;
-import java.util.List;
+import org.w3c.dom.NameList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,28 +27,19 @@ public class MainActivity extends AppCompatActivity {
     private Button mTopJoeursButton;
     private Button mNameButton;
     private User mUser;
-    private String mGamerList;
-    //variable pour recuperer un resultat dans ActivityResult()
-    public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
+    private TopGamers mGamers;
+    private GamersNames mNameList;
     public String mName;
-
     private int mScore;
 
+    //variable pour recuperer un resultat dans ActivityResult()
+    public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
     //creation d'un identifiant qui permet de recuperer le score en utilisant cet identifiant
     public static final String BUNDLE_EXTRA_FIRSTNAME = "BUNDLE_EXTRA_FIRSTNAME";
-
-    public static final String PREFERENCES_FILE = "TopQuizPreferences"; // name of the file that stock preferences
-
+    public static final String PREF_KEY_NAME = "PREF_KEY_NAME"; // name of the file that stock preferences
     private SharedPreferences mPreferences;
-
-    public static final String PREF_KEY_SCORE = "PREF_KEY_SCORE";
-
-
-    public static final String PREF_KEY_FIRST_NAME = "PREF_KEY_FIRST_NAME";
-
     public static final String PREF_KEY_TOP_JOUEURS = "PREF_KEY_TOP_JOUEURS";
-
-private TopGamers mGamers;
+    public static final String PREF_KEY_FIRST_NAME="PREF_KEY_FIRST_NAME";
 
     //pour recuperer une valeur d'une autre activity nous utilisons la methode
     //onActivityResult
@@ -58,10 +48,9 @@ private TopGamers mGamers;
         if (GAME_ACTIVITY_REQUEST_CODE == requestCode && RESULT_OK == resultCode) {
             //Fetch the score from the Intent
             int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
-            mPreferences.edit().putInt(PREF_KEY_SCORE, score).apply();
-            mPreferences.edit().putString(PREF_KEY_FIRST_NAME,mName).apply();
-            mGamers.addGamerName(mUser.getFirstName());
             mGamers.addGamerNameAndScore(mUser.getFirstName(),score);
+            mNameList.addNames(mUser.getFirstName());
+            mPreferences.edit().putString(PREF_KEY_NAME,mNameList.toString()).apply();
             mPreferences.edit().putString(PREF_KEY_TOP_JOUEURS,mGamers.toString()).apply();
             mDisplayGreetingTxt.setText(mGamers.toString()+" estou no onActivityResult :-)");
 
@@ -80,23 +69,22 @@ private TopGamers mGamers;
         //initialiser le type TopGamers dans la méthode OnCreate
         mGamers = new TopGamers();
 
+        //initialiser le type Name dans la méthode onCreate
+        mNameList = new GamersNames();
+
 //avant cetait juste getPreferences. Desormais, on a utilisé getSharedPreferences
         //qui nous permet de créer une cle, donc 'PREFERENCES_FILE'. Cette clé
         //permet aux autres activités d'acceder au même fichier que mPreferences
         //utilise
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
+        mPreferences = getSharedPreferences(PREF_KEY_TOP_JOUEURS,MODE_PRIVATE);
         mDisplayGreetingTxt = findViewById(R.id.activity_main_greeting_txt);
         mNameInput = findViewById(R.id.activity_main_name_input);
         mPlayButton = findViewById(R.id.activity_main_play_btn);
         mTopJoeursButton = findViewById(R.id.activity_main_meilleur_joueur_btn);
         mNameButton = findViewById(R.id.activity_main_noms_btn);
 
-
-        //pour enregistrer et afficher le dernier score du utilisateur
-        mScore = mPreferences.getInt(PREF_KEY_SCORE, 0);
         //pour recuperer la list de Joueurs qui a été sauvegardé en preferences:
-        mGamerList = mPreferences.getString(PREF_KEY_TOP_JOUEURS, "Player's list: ");
+        //mNameList = mPreferences.getString(PREF_KEY_NAME, "Player's list: ");
         //pour afficher les donnés recuperees
         mDisplayGreetingTxt.setText("Oi, estou no método OnCreate, lala ;-) Welcome" +
                 " " + mGamers.toString());
