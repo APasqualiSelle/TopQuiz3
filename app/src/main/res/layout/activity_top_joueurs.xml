@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.TopJoueurs"
-
-    >
+    android:orientation="vertical"
+    tools:context="com.selle.aline.topquiz3.controller.TopJoueurs">
 
     <TextView
         android:id="@+id/activity_top_joueur_txt"
@@ -14,6 +12,32 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:padding="20dp"
-        android:text="Top Joueurs : "/>
+        android:text="@string/top_5_joueurs"/>
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/activity_top_joueurs_score_btn"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="30dp"
+            android:text="@string/score"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="164dp" />
+
+        <Button
+            android:id="@+id/activity_top_joueur_ordreAlphabetique_btn"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="30dp"
+            android:text="@string/nom"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="164dp" />
+    </LinearLayout>
+
+</LinearLayout>

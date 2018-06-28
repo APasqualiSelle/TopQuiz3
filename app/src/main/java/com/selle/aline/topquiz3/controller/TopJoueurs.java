@@ -1,8 +1,11 @@
 package com.selle.aline.topquiz3.controller;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.selle.aline.topquiz3.R;
@@ -10,16 +13,24 @@ import com.selle.aline.topquiz3.model.TopGamers;
 
 import java.util.Collections;
 
-public class TopJoueurs extends AppCompatActivity {
+public class TopJoueurs extends AppCompatActivity implements View.OnClickListener {
 
     private TextView mDisplayPlayerNameAndScore;
     private SharedPreferences mPreferencesTopJoueurs;
     private String mGamerList;
 
+    private Button mNameButton;
+    private Button mScoreButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_joueurs);
+
+        mNameButton = findViewById(R.id.activity_top_joueur_ordreAlphabetique_btn);
+        mNameButton.setOnClickListener(this);
+        mScoreButton = findViewById(R.id.activity_top_joueurs_score_btn);
+        mScoreButton.setOnClickListener(this);
 
         mDisplayPlayerNameAndScore = findViewById(R.id.activity_top_joueur_txt);
 
@@ -32,9 +43,17 @@ public class TopJoueurs extends AppCompatActivity {
         //La façon de recuperer de données de l'intent de la main Activity
         //mLastPlayerName = getIntent().getStringExtra(MainActivity.BUNDLE_EXTRA_FIRSTNAME);
 */
-        mGamerList = mPreferencesTopJoueurs.getString(MainActivity.PREF_KEY_TOP_JOUEURS,"Por enquanto ninguém");
+        mGamerList = mPreferencesTopJoueurs.getString(MainActivity.PREF_KEY_TOP_JOUEURS, "Por enquanto ninguém");
         //pour afficher dans le TextView
-         mDisplayPlayerNameAndScore.setText(mGamerList);
+        mDisplayPlayerNameAndScore.setText(mGamerList);
 
+
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intentNameAndScore = new Intent(TopJoueurs.this, NameAndScore.class);
+        startActivity(intentNameAndScore);
     }
 }

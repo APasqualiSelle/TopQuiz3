@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,16 +12,16 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:padding="20dp"
-        android:text="Welcome! What is your name?"/>    
+        android:text="@string/welcome_what_is_your_name" />
 
     <EditText
         android:id="@+id/activity_main_name_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginEnd="10dp"
-        android:hint="Please type your name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:hint="@string/please_type_your_name"
 
         />
 
@@ -33,7 +32,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:padding="30dp"
-        android:text="Lets Play" />
+        android:text="@string/lets_play" />
 
     <Button
         android:id="@+id/activity_main_meilleur_joueur_btn"
@@ -41,19 +40,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:padding="30dp"
-        android:text="Top Joueurs"
+        android:text="@string/top_joueurs"
 
 
         />
-
-    <Button
-        android:id="@+id/activity_main_noms_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="30dp"
-        android:text="Nom"/>
-
 
 
 </LinearLayout>

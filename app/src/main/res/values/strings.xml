@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">TopQuiz3</string>
+    <string name="answer1">Answer1</string>
+    <string name="question">Question?</string>
+    <string name="please_type_your_name">Please type your name</string>
+    <string name="lets_play">Lets Play</string>
+    <string name="top_joueurs">Top Joueurs</string>
+    <string name="welcome_what_is_your_name">Welcome! What is your name?</string>
+    <string name="nom">Nom</string>
+    <string name="score">score</string>
+    <string name="noms_de_joueurs">Noms de joueurs:</string>
+    <string name="top_5_joueurs">Top 5 Joueurs :</string>
+    <string name="les_noms_des_joueurs">Les noms du joueurs</string>
 </resources>
