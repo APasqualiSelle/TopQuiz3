@@ -15,26 +15,19 @@ import java.util.Collections;
 
 public class TopJoueurs extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView mDisplayPlayerNameAndScore;
-    private SharedPreferences mPreferencesTopJoueurs;
-    private String mGamerList;
-
-    private Button mNameButton;
-    private Button mScoreButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_joueurs);
 
-        mNameButton = findViewById(R.id.activity_top_joueur_ordreAlphabetique_btn);
-        mNameButton.setOnClickListener(this);
-        mScoreButton = findViewById(R.id.activity_top_joueurs_score_btn);
-        mScoreButton.setOnClickListener(this);
+        Button nameButton = findViewById(R.id.activity_top_joueur_ordreAlphabetique_btn);
+        nameButton.setOnClickListener(this);
+        Button scoreButton = findViewById(R.id.activity_top_joueurs_score_btn);
+        scoreButton.setOnClickListener(this);
 
-        mDisplayPlayerNameAndScore = findViewById(R.id.activity_top_joueur_txt);
+        TextView displayPlayerNameAndScore = findViewById(R.id.activity_top_joueur_txt);
 
-        mPreferencesTopJoueurs = getSharedPreferences(MainActivity.PREF_KEY_TOP_JOUEURS, MODE_PRIVATE);
+        SharedPreferences preferencesTopJoueurs = getSharedPreferences(MainActivity.PREF_KEY_TOP_JOUEURS, MODE_PRIVATE);
 
        /* //j'ai besoin d'affecter les preferences dans le type String mLastPlayerName
         mLastPlayerName = mPreferencesTopJoueurs.getString(MainActivity.PREF_KEY_FIRST_NAME, "Top Joueurs");
@@ -43,9 +36,9 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
         //La façon de recuperer de données de l'intent de la main Activity
         //mLastPlayerName = getIntent().getStringExtra(MainActivity.BUNDLE_EXTRA_FIRSTNAME);
 */
-        mGamerList = mPreferencesTopJoueurs.getString(MainActivity.PREF_KEY_TOP_JOUEURS, "Por enquanto ninguém");
+        String gamerList = preferencesTopJoueurs.getString(MainActivity.PREF_KEY_TOP_JOUEURS, "Por enquanto ninguém");
         //pour afficher dans le TextView
-        mDisplayPlayerNameAndScore.setText(mGamerList);
+        displayPlayerNameAndScore.setText(gamerList);
 
 
 
