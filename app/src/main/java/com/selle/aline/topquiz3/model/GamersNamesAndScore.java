@@ -9,7 +9,8 @@ import java.util.Collections;
 public class GamersNamesAndScore {
 
 private ArrayList<String> mNamesList = new ArrayList<>();
-private ArrayList<Integer> mScoreList = new ArrayList<>();
+    private ArrayList<Integer> mScoreList = new ArrayList<>();
+
 
 public void addNames(String firstName){
 
@@ -17,11 +18,6 @@ public void addNames(String firstName){
     Collections.sort(mNamesList);
 }
 
-public void addScore(int score){
-
-    mScoreList.add(score);
-    Collections.sort(mScoreList,Collections.reverseOrder());
-}
 
 
 
@@ -37,17 +33,27 @@ public String toString() {
 
 }
 
-//on a besoin d'un toString pour le score egalement, car nous voulons afficher une liste (de score)
-public String toStringScore(){
 
-    String resultat ="";
-    for(Integer score:mScoreList){
-        resultat += score+"\n";
+    public void addScore(int score) {
+
+        mScoreList.add(score);
+        Collections.sort(mScoreList, Collections.reverseOrder());
     }
 
-    return resultat;
+    //on a besoin d'un toString pour le score egalement, car nous voulons afficher une liste (de score)
+    public String toStringScore() {
+
+        String resultat = "";
+        for (Integer score : mScoreList) {
+            resultat += score + "\n";
+        }
+
+        return resultat;
+    }
+
+
 }
 
 
 
-}
+

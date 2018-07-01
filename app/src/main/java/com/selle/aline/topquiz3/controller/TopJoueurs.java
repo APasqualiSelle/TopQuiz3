@@ -15,19 +15,26 @@ import java.util.Collections;
 
 public class TopJoueurs extends AppCompatActivity implements View.OnClickListener {
 
+    private TextView mDisplayPlayersNames;
+    private TextView mDisplayPlayerScore;
+    private String mGamersName;
+    private String mGamersScore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_top_joueurs);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_top_joueurs );
 
-        Button nameButton = findViewById(R.id.activity_top_joueur_ordreAlphabetique_btn);
-        nameButton.setOnClickListener(this);
-        Button scoreButton = findViewById(R.id.activity_top_joueurs_score_btn);
-        scoreButton.setOnClickListener(this);
+        Button nameButton = findViewById( R.id.activity_top_joueur_ordreAlphabetique_btn );
+        Button scoreButton = findViewById( R.id.activity_top_joueurs_score_btn );
 
-        TextView displayPlayerNameAndScore = findViewById(R.id.activity_top_joueur_txt);
+        mDisplayPlayersNames = findViewById( R.id.activity_top_joueur_name_txt );
+        mDisplayPlayerScore = findViewById( R.id.activity_top_joueuer_score_txt);
+        TextView displayPlayerNameAndScore = findViewById( R.id.activity_top_joueur_txt );
+        nameButton.setOnClickListener( this );
+        scoreButton.setOnClickListener( this );
 
-        SharedPreferences preferencesTopJoueurs = getSharedPreferences(MainActivity.PREF_KEY_TOP_JOUEURS, MODE_PRIVATE);
+        SharedPreferences mPreferencesTopJoueurs = getSharedPreferences( MainActivity.PREF_KEY_TOP_JOUEURS, MODE_PRIVATE );
 
        /* //j'ai besoin d'affecter les preferences dans le type String mLastPlayerName
         mLastPlayerName = mPreferencesTopJoueurs.getString(MainActivity.PREF_KEY_FIRST_NAME, "Top Joueurs");
@@ -36,17 +43,25 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
         //La façon de recuperer de données de l'intent de la main Activity
         //mLastPlayerName = getIntent().getStringExtra(MainActivity.BUNDLE_EXTRA_FIRSTNAME);
 */
-        String gamerList = preferencesTopJoueurs.getString(MainActivity.PREF_KEY_TOP_JOUEURS, "Por enquanto ninguém");
+        String gamerList = mPreferencesTopJoueurs.getString( MainActivity.PREF_KEY_TOP_JOUEURS, "Por enquanto ninguém" );
         //pour afficher dans le TextView
-        displayPlayerNameAndScore.setText(gamerList);
-
-
-
+        displayPlayerNameAndScore.setText( gamerList );
+        mGamersScore = mPreferencesTopJoueurs.getString( MainActivity.PREF_KEY_SCORE, "List of score:" );
+        mGamersName = mPreferencesTopJoueurs.getString( MainActivity.PREF_KEY_NAME, "List of names:" );
     }
 
     @Override
-    public void onClick(View view) {
-        Intent intentNameAndScore = new Intent(TopJoueurs.this, NameAndScore.class);
-        startActivity(intentNameAndScore);
+    public void onClick(View v) {
+
+        int buttonClicked = v.getId();
+        switch (buttonClicked) {
+            case R.id.activity_top_joueur_ordreAlphabetique_btn:
+                mDisplayPlayersNames.setText(mGamersName);
+                break;
+            case R.id.activity_top_joueurs_score_btn:
+                mDisplayPlayerScore.setText(mGamersScore);
+                break;
+
+        }
     }
 }

@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private TopGamers mGamers;
     private GamersNamesAndScore mNameList;
     public String mName;
-    private int mScore;
+    private GamersNamesAndScore mScoreList;
 
     //variable pour recuperer un resultat dans ActivityResult()
     public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPreferences;
     public static final String PREF_KEY_TOP_JOUEURS = "PREF_KEY_TOP_JOUEURS";
     public static final String PREF_KEY_FIRST_NAME = "PREF_KEY_FIRST_NAME";
+    public static final String PREF_KEY_SCORE = "PREF_KEY_SCORE";
 
     //pour recuperer une valeur d'une autre activity nous utilisons la methode
     //onActivityResult
@@ -48,8 +49,10 @@ public class MainActivity extends AppCompatActivity {
             int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
             mGamers.addGamerNameAndScore(mUser.getFirstName(), score);
             mNameList.addNames(mUser.getFirstName());
+            mScoreList.addScore(score);
             mPreferences.edit().putString(PREF_KEY_NAME, mNameList.toString()).apply();
             mPreferences.edit().putString(PREF_KEY_TOP_JOUEURS, mGamers.toString()).apply();
+            mPreferences.edit().putString(PREF_KEY_SCORE,mScoreList.toStringScore()).apply();
             mDisplayGreetingTxt.setText(mGamers.toString() + " estou no onActivityResult :-)");
 
         }
@@ -69,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
         //initialiser le type Name dans la méthode onCreate
         mNameList = new GamersNamesAndScore();
+
+        //initaliser le type Score dans la méthde onCreate
+        mScoreList = new GamersNamesAndScore();
 
 //avant cetait juste getPreferences. Desormais, on a utilisé getSharedPreferences
         //qui nous permet de créer une cle, donc 'PREFERENCES_FILE'. Cette clé

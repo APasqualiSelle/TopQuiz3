@@ -18,7 +18,6 @@
         </activity>
         <activity android:name=".controller.GameActivity" />
         <activity android:name=".controller.TopJoueurs" />
-        <activity android:name=".controller.NameAndScore"></activity>
     </application>
 
 </manifest>
