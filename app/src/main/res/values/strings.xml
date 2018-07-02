@@ -13,4 +13,5 @@
     <string name="les_noms_des_joueurs">Les noms du joueurs</string>
     <string name="les_noms_des_gamers">Les noms des joueurs</string>
     <string name="les_score_des_joueurs">Les score des joueurs</string>
+    <string name="liste_de_joueurs">Liste de joueurs:</string>
 </resources>

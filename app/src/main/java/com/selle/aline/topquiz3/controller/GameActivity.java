@@ -24,10 +24,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Button mAnswerButton2;
     private Button mAnswerButton3;
     private Button mAnswerButton4;
-
     private QuestionBank mQuestionBank;
     private Question mCurrentQuestion;
-
     private int mScore;
     private int mNumberOfQuestions;
 
@@ -70,8 +68,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         this.displayQuestion(mCurrentQuestion);
 
     }
-
-
 
 
     private void displayQuestion(final Question question) {

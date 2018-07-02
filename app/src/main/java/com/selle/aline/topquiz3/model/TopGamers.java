@@ -19,11 +19,18 @@ import static java.util.Collections.*;
 public class TopGamers {
 
     private Map<String, Integer> mGamersNameAndScore = new TreeMap<>();
+    private Map<Integer,String>mGamersScoreAndName = new TreeMap<>();
 
     public void addGamerNameAndScore(String firstName, Integer score) {
         mGamersNameAndScore.put(firstName, score);
 
         }
+
+        public void addScoreAndGamer(Integer score, String firstName){
+             mGamersScoreAndName.put( 0-score , firstName );
+
+        }
+
 
     public String toString() {
 
@@ -37,6 +44,22 @@ public class TopGamers {
 
         }
 return resultat;
+    }
+
+    public String toString2() {
+
+        String resultat = "";
+
+        Set<Integer> scoreValue = mGamersScoreAndName.keySet();
+
+        for (Integer i : scoreValue) {
+
+            resultat += 0-
+
+                    i + " : "+ mGamersScoreAndName.get(i)+" point(s).\n";
+
+        }
+        return resultat;
     }
 
 }
