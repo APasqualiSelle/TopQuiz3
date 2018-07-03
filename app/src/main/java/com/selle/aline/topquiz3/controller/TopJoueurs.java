@@ -14,18 +14,22 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
     private TextView mDisplayText;
     private String mGamersListScore;
     private String mGamerList;
+    private Button mScoreButton;
+    private Button mNameButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_top_joueurs );
 
-        Button nameButton = findViewById( R.id.activity_top_joueur_ordreAlphabetique_btn );
-        Button scoreButton = findViewById( R.id.activity_top_joueurs_score_btn );
+        mNameButton = findViewById( R.id.activity_top_joueur_ordreAlphabetique_btn );
+     mScoreButton = findViewById( R.id.activity_top_joueurs_score_btn );
 
         mDisplayText = findViewById( R.id.activity_top_joueur_txt );
-        nameButton.setOnClickListener( this );
-        scoreButton.setOnClickListener( this );
+
+
+           mNameButton.setOnClickListener( this );
+           mScoreButton.setOnClickListener( this );
 
         SharedPreferences mPreferencesTopJoueurs = getSharedPreferences( MainActivity.PREF_KEY_TOP_JOUEURS, MODE_PRIVATE );
 
@@ -45,6 +49,7 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
 
+
         int buttonClicked = v.getId();
         switch (buttonClicked) {
             case R.id.activity_top_joueur_ordreAlphabetique_btn:
@@ -52,6 +57,7 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
 
                 break;
             case R.id.activity_top_joueurs_score_btn:
+
                 mDisplayText.setText( mGamersListScore );
 
                 break;

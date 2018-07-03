@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
             mPreferences.edit().putString( PREF_TOP_TOP_JOUEURS_SCORE, mScores.toString2() ).apply();
             mPreferences.edit().putString( PREF_KEY_TOP_JOUEURS, mGamers.toString() ).apply();
             mDisplayGreetingTxt.setText( mGamers.toString() + " estou no onActivityResult :-)" );
+            mTopJoeursButton.setVisibility(View.VISIBLE);
+
+
 
         }
     }
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
         //pour inactiver le boutton
         mPlayButton.setEnabled( false );
-        // mTopJoeursButton.setVisibility(View.GONE);
+        mTopJoeursButton.setVisibility(View.GONE);
 
         //pour activer le boutton lorsqu'un utilisateur tape un charactere dans le clavier
         mNameInput.addTextChangedListener( new TextWatcher() {
@@ -96,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mPlayButton.setEnabled( s.toString().length() != 0 );
+
+
             }
 
             @Override
@@ -130,21 +135,24 @@ public class MainActivity extends AppCompatActivity {
             }
         } );
 
-        mTopJoeursButton.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent topJoueursIntent = new Intent( MainActivity.this, TopJoueurs.class );
-                //avant startActivity, nous pouvons ajouter de données dans l'intent
-                //à travers de la méthode putExtra
-                // topJoueursIntent.putExtra(BUNDLE_EXTRA_FIRSTNAME,mFirstName);
-                startActivity( topJoueursIntent );
 
-            }
-        } );
+            mTopJoeursButton.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent topJoueursIntent = new Intent( MainActivity.this, TopJoueurs.class );
+                    //avant startActivity, nous pouvons ajouter de données dans l'intent
+                    //à travers de la méthode putExtra
+                    // topJoueursIntent.putExtra(BUNDLE_EXTRA_FIRSTNAME,mFirstName);
+                    startActivity( topJoueursIntent );
+
+                }
+            } );
+        }
+
 
 
     }
 
 
-}
+
 

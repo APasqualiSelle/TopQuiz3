@@ -62,4 +62,7 @@ return resultat;
         return resultat;
     }
 
+    public boolean isEmpty() {
+        return true;
+    }
 }
