@@ -1,10 +1,12 @@
 package com.selle.aline.topquiz3.model;
 
 
-
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -18,21 +20,50 @@ import static java.util.Collections.*;
  */
 public class TopGamers {
 
-    private Map<String, Integer> mGamersNameAndScore = new TreeMap<>();
-    private Map<Integer,String>mGamersScoreAndName = new TreeMap<>();
+    private Map<String, Integer> mGamersNameAndScore = new TreeMap<>(
+    );
+    private Map<Integer, String> mGamersScoreAndName = new TreeMap<>(
+            new Comparator<Integer>() {
+                @Override
+                public int compare(Integer o1, Integer o2) {
+                    return o2.compareTo(o1);
+                }
+            }
+    );
 
     public void addGamerNameAndScore(String firstName, Integer score) {
-        mGamersNameAndScore.put(firstName, score);
 
+        mGamersNameAndScore.put( firstName, score );
+
+    }
+
+    public void addScoreAndGamer(Integer score, String firstName) {
+
+        mGamersScoreAndName.put( score, firstName );
+
+    }
+
+    //methode for ordering a TreeMap in alphabetical order:
+    public String printMapName() {
+        String resultat = "";
+        for (Map.Entry<String, Integer> entry : mGamersNameAndScore.entrySet()) {
+            resultat += "Joeur: " + entry.getKey() +
+                    " Score : " + entry.getValue()+"\n";
         }
+        return resultat;
+    }
 
-        public void addScoreAndGamer(Integer score, String firstName){
-             mGamersScoreAndName.put( 0-score , firstName );
-
+    public String printMapScore() {
+        String resultat = "";
+        for (Map.Entry<Integer, String> entry : mGamersScoreAndName.entrySet()) {
+            resultat += "Score: " + entry.getKey() +
+                    " Joueur : " + entry.getValue()+"\n";
         }
+        return resultat;
+    }
 
 
-    public String toString() {
+   /* public String toString() {
 
         String resultat = "";
 
@@ -44,7 +75,7 @@ public class TopGamers {
 
         }
 return resultat;
-    }
+    }*/
 
     public String toString2() {
 
@@ -54,15 +85,13 @@ return resultat;
 
         for (Integer i : scoreValue) {
 
-            resultat += 0-
+            resultat += 0 -
 
-                    i + " : "+ mGamersScoreAndName.get(i)+" point(s).\n";
+                    i + " : " + mGamersScoreAndName.get( i ) + " point(s).\n";
 
         }
         return resultat;
     }
 
-    public boolean isEmpty() {
-        return true;
-    }
+
 }

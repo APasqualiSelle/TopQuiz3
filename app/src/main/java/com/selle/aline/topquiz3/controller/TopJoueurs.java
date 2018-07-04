@@ -23,13 +23,13 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
         setContentView( R.layout.activity_top_joueurs );
 
         mNameButton = findViewById( R.id.activity_top_joueur_ordreAlphabetique_btn );
-     mScoreButton = findViewById( R.id.activity_top_joueurs_score_btn );
+        mScoreButton = findViewById( R.id.activity_top_joueurs_score_btn );
 
         mDisplayText = findViewById( R.id.activity_top_joueur_txt );
 
 
-           mNameButton.setOnClickListener( this );
-           mScoreButton.setOnClickListener( this );
+        mNameButton.setOnClickListener( this );
+        mScoreButton.setOnClickListener( this );
 
         SharedPreferences mPreferencesTopJoueurs = getSharedPreferences( MainActivity.PREF_KEY_TOP_JOUEURS, MODE_PRIVATE );
 
@@ -40,9 +40,9 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
         //La façon de recuperer de données de l'intent de la main Activity
         //mLastPlayerName = getIntent().getStringExtra(MainActivity.BUNDLE_EXTRA_FIRSTNAME);
 */
-       mGamerList = mPreferencesTopJoueurs.getString( MainActivity.PREF_KEY_TOP_JOUEURS, "Por enquanto ninguém" );
+        mGamerList = mPreferencesTopJoueurs.getString( MainActivity.PREF_KEY_TOP_JOUEURS, "Por enquanto ninguém" );
         //pour afficher dans le TextView
-        mGamersListScore = mPreferencesTopJoueurs.getString(MainActivity.PREF_TOP_TOP_JOUEURS_SCORE,"Omg");
+        mGamersListScore = mPreferencesTopJoueurs.getString( MainActivity.PREF_TOP_TOP_JOUEURS_SCORE, "Omg" );
 
     }
 
@@ -53,7 +53,7 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
         int buttonClicked = v.getId();
         switch (buttonClicked) {
             case R.id.activity_top_joueur_ordreAlphabetique_btn:
-                mDisplayText.setText(mGamerList);
+                mDisplayText.setText( mGamerList );
 
                 break;
             case R.id.activity_top_joueurs_score_btn:

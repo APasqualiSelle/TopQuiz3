@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private Button mTopJoeursButton;
     private User mUser;
     private TopGamers mGamers;
-    private TopGamers mScores;
 
 
     //variable pour recuperer un resultat dans ActivityResult()
@@ -43,13 +42,11 @@ public class MainActivity extends AppCompatActivity {
             //Fetch the score from the Intent
             int score = data.getIntExtra( GameActivity.BUNDLE_EXTRA_SCORE, 0 );
             mGamers.addGamerNameAndScore( mUser.getFirstName(), score );
-            mScores.addScoreAndGamer( score, mUser.getFirstName() );
-            mPreferences.edit().putString( PREF_TOP_TOP_JOUEURS_SCORE, mScores.toString2() ).apply();
-            mPreferences.edit().putString( PREF_KEY_TOP_JOUEURS, mGamers.toString() ).apply();
-            mDisplayGreetingTxt.setText( mGamers.toString() + " estou no onActivityResult :-)" );
+           mGamers.addScoreAndGamer( score, mUser.getFirstName() );
+            mPreferences.edit().putString( PREF_TOP_TOP_JOUEURS_SCORE, mGamers.printMapScore() ).apply();
+            mPreferences.edit().putString( PREF_KEY_TOP_JOUEURS, mGamers.printMapName() ).apply();
+            mDisplayGreetingTxt.setText( "estou no onActivityResult :-)" );
             mTopJoeursButton.setVisibility(View.VISIBLE);
-
-
 
         }
     }
@@ -65,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
         //initialiser le type TopGamers dans la méthode OnCreate
         mGamers = new TopGamers();
         //initialiser le type TopGamers dans la méthode OnCreate
-        mScores = new TopGamers();
-
 
 //avant cetait juste getPreferences. Desormais, on a utilisé getSharedPreferences
         //qui nous permet de créer une cle, donc 'PREFERENCES_FILE'. Cette clé
@@ -82,8 +77,10 @@ public class MainActivity extends AppCompatActivity {
         //pour recuperer la list de Joueurs qui a été sauvegardé en preferences:
         //mNameList = mPreferences.getString(PREF_KEY_NAME, "Player's list: ");
         //pour afficher les donnés recuperees
+
+
         mDisplayGreetingTxt.setText( "Oi, estou no método OnCreate, lala ;-) Welcome" +
-                " " + mGamers.toString() );
+                " " );
 
         //pour inactiver le boutton
         mPlayButton.setEnabled( false );
