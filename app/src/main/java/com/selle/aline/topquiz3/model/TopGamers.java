@@ -20,8 +20,7 @@ import static java.util.Collections.*;
  */
 public class TopGamers {
 
-    private Map<String, Integer> mGamersNameAndScore = new TreeMap<>(
-    );
+    private Map<String, Integer> mGamersNameAndScore = new TreeMap<>();
     private Map<Integer, String> mGamersScoreAndName = new TreeMap<>(
             new Comparator<Integer>() {
                 @Override
@@ -77,7 +76,7 @@ public class TopGamers {
 return resultat;
     }*/
 
-    public String toString2() {
+    /*public String toString2() {
 
         String resultat = "";
 
@@ -91,7 +90,7 @@ return resultat;
 
         }
         return resultat;
-    }
+    }*/
 
 
 }
