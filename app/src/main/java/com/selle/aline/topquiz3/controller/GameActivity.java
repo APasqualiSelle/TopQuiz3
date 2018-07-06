@@ -38,10 +38,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        mQuestionBank = this.generateQuestions();
 
         mScore = 0;
-        mNumberOfQuestions = 4;
+        mNumberOfQuestions = 6;
 
         // Wire widgets
         mQuestionTextView = (TextView) findViewById(R.id.activity_game_question_text);
@@ -64,12 +63,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mAnswerButton3.setOnClickListener(this);
         mAnswerButton4.setOnClickListener(this);
 
+        mQuestionBank = this.generateQuestions();
         mCurrentQuestion = mQuestionBank.getQuestion();
         this.displayQuestion(mCurrentQuestion);
 
     }
 
-
+//getChoiceList() is a method from the class Question that returns a list of String
     private void displayQuestion(final Question question) {
         mQuestionTextView.setText(question.getQuestion());
         mAnswerButton1.setText(question.getChoiceList().get(0));

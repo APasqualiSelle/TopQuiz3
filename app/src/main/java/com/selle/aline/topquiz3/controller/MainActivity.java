@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         //initialiser le type TopGamers dans la méthode OnCreate
 
 //avant cetait juste getPreferences. Desormais, on a utilisé getSharedPreferences
-        //qui nous permet de créer une cle, donc 'PREFERENCES_FILE'. Cette clé
+        //qui nous permet de créer une cle, donc 'PREF_KEY_TOP_JOUEURS'. Cette clé
         //permet aux autres activités d'acceder au même fichier que mPreferences
         //utilise
         mPreferences = getSharedPreferences( PREF_KEY_TOP_JOUEURS, MODE_PRIVATE );
@@ -76,14 +76,14 @@ public class MainActivity extends AppCompatActivity {
 
         //pour recuperer la list de Joueurs qui a été sauvegardé en preferences:
         //mNameList = mPreferences.getString(PREF_KEY_NAME, "Player's list: ");
-        //pour afficher les donnés recuperees
-
+        //pour afficher les donnés recuperees:
 
         mDisplayGreetingTxt.setText( "Oi, estou no método OnCreate, lala ;-) Welcome" +
                 " " );
 
         //pour inactiver le boutton
         mPlayButton.setEnabled( false );
+        //pour rendre le boutton invisible
         mTopJoeursButton.setVisibility(View.GONE);
 
         //pour activer le boutton lorsqu'un utilisateur tape un charactere dans le clavier

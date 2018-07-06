@@ -24,7 +24,6 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
 
         mNameButton = findViewById( R.id.activity_top_joueur_ordreAlphabetique_btn );
         mScoreButton = findViewById( R.id.activity_top_joueurs_score_btn );
-
         mDisplayText = findViewById( R.id.activity_top_joueur_txt );
 
 
@@ -46,6 +45,8 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
 
     }
 
+
+
     @Override
     public void onClick(View v) {
 
@@ -53,12 +54,14 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
         int buttonClicked = v.getId();
         switch (buttonClicked) {
             case R.id.activity_top_joueur_ordreAlphabetique_btn:
-                mDisplayText.setText( mGamerList );
+
+                    mDisplayText.setText( mGamerList );
+
 
                 break;
             case R.id.activity_top_joueurs_score_btn:
 
-                mDisplayText.setText( mGamersListScore );
+                    mDisplayText.setText( mGamersListScore );
 
                 break;
 

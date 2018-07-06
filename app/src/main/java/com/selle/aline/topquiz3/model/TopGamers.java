@@ -1,76 +1,75 @@
 package com.selle.aline.topquiz3.model;
 
 
-import android.support.annotation.NonNull;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
-
-import static java.util.Collections.*;
 
 
 /**
  * Created by Aline de Alexandria e Pasquali Selle - OpenClassrooms on 19/06/2018.
  */
-public class TopGamers {
+public class TopGamers  {
 
-    private Map<String, Integer> mGamersNameAndScore = new TreeMap<>();
-    private Map<Integer, String> mGamersScoreAndName = new TreeMap<>(
-            new Comparator<Integer>() {
-                @Override
-                public int compare(Integer o1, Integer o2) {
-                    return o2.compareTo(o1);
-                }
-            }
-    );
+
+    private Map<Gamers, String> mNamesList = new TreeMap<>(new MyName());
+    private Map<Gamers, String> mScoreList = new TreeMap<>(new MyScore());
+
 
     public void addGamerNameAndScore(String firstName, Integer score) {
 
-        mGamersNameAndScore.put( firstName, score );
+        mNamesList.put(new Gamers(firstName, score ),"Name");
+
 
     }
-
     public void addScoreAndGamer(Integer score, String firstName) {
 
-        mGamersScoreAndName.put( score, firstName );
+        mScoreList.put(new Gamers(firstName,score ),"Score");
 
     }
 
     //methode for ordering a TreeMap in alphabetical order:
     public String printMapName() {
         String resultat = "";
-        for (Map.Entry<String, Integer> entry : mGamersNameAndScore.entrySet()) {
-            resultat += "Joeur: " + entry.getKey() +
-                    " Score : " + entry.getValue()+"\n";
+        int i=0;
+        for (Map.Entry<Gamers, String> entry : mNamesList.entrySet()) {
+            resultat +=  entry.getKey() +
+                      entry.getValue()+"\n";
+            i++;
+            if(i>4){
+                break;
+            }
+
+
         }
         return resultat;
     }
 
     public String printMapScore() {
         String resultat = "";
-        for (Map.Entry<Integer, String> entry : mGamersScoreAndName.entrySet()) {
-            resultat += "Score: " + entry.getKey() +
-                    " Joueur : " + entry.getValue()+"\n";
+        int i=0;
+        for (Map.Entry<Gamers, String> entry : mScoreList.entrySet()) {
+            resultat +=  entry.getKey()
+                     + entry.getValue()+"\n";
+            i++;
+            if(i>4){
+                break;
+            }
         }
         return resultat;
     }
+
+
 
 
    /* public String toString() {
 
         String resultat = "";
 
-        Set<String> nameValue = mGamersNameAndScore.keySet();
+        Set<String> nameValue = mNamesList.keySet();
 
         for (String i : nameValue) {
 
-            resultat += i + " : "+ mGamersNameAndScore.get(i)+" point(s).\n";
+            resultat += i + " : "+ mNamesList.get(i)+" point(s).\n";
 
         }
 return resultat;
@@ -80,13 +79,13 @@ return resultat;
 
         String resultat = "";
 
-        Set<Integer> scoreValue = mGamersScoreAndName.keySet();
+        Set<Integer> scoreValue = mScoreList.keySet();
 
         for (Integer i : scoreValue) {
 
             resultat += 0 -
 
-                    i + " : " + mGamersScoreAndName.get( i ) + " point(s).\n";
+                    i + " : " + mScoreList.get( i ) + " point(s).\n";
 
         }
         return resultat;

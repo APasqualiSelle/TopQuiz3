@@ -22,10 +22,12 @@ public class Question {
     }
 
     public void setQuestion(String question) {
+
         mQuestion = question;
     }
 
     public List<String> getChoiceList() {
+
         return mChoiceList;
     }
 

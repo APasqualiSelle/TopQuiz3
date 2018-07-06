@@ -19,6 +19,7 @@ public class QuestionBank {
         mNextQuestionIndex = 0;
     }
 
+    //This method is used for getting the next Question in the app
     public Question getQuestion(){
 
     if(mNextQuestionIndex == mQuestionList.size()){
