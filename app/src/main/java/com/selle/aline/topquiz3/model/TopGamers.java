@@ -1,6 +1,9 @@
 package com.selle.aline.topquiz3.model;
 
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -8,55 +11,66 @@ import java.util.TreeMap;
 /**
  * Created by Aline de Alexandria e Pasquali Selle - OpenClassrooms on 19/06/2018.
  */
-public class TopGamers  {
+public class TopGamers {
 
 
-    private Map<Gamers, String> mNamesList = new TreeMap<>(new MyName());
-    private Map<Gamers, String> mScoreList = new TreeMap<>(new MyScore());
+    private List<Gamers> mGamersList = new ArrayList<>();
 
 
     public void addGamerNameAndScore(String firstName, Integer score) {
 
-        mNamesList.put(new Gamers(firstName, score ),"Name");
+        mGamersList.add( new Gamers( firstName, score ) );
 
 
     }
-    public void addScoreAndGamer(Integer score, String firstName) {
 
-        mScoreList.put(new Gamers(firstName,score ),"Score");
+    /*public void addScoreAndGamer(Integer score, String firstName) {
 
-    }
+        mGamersList.add( new Gamers( firstName, score ) );
 
-    //methode for ordering a TreeMap in alphabetical order:
-    public String printMapName() {
+
+    }*/
+
+    //methode that returns a String for ordering for displaying a list:
+    // we need a string for displaying the list
+    public String printNameList() {
         String resultat = "";
-        int i=0;
-        for (Map.Entry<Gamers, String> entry : mNamesList.entrySet()) {
-            resultat +=  entry.getKey() +
-                      entry.getValue()+"\n";
-            i++;
-            if(i>4){
+        Collections.sort( mGamersList, new MyNameComparator() );
+        for (int i = 0; i < mGamersList.size(); i++) {
+
+
+            if (i > 4) {
+
                 break;
             }
-
+            resultat += mGamersList.get( i );
 
         }
         return resultat;
     }
 
-    public String printMapScore() {
+    public String printScoreList() {
+
         String resultat = "";
-        int i=0;
-        for (Map.Entry<Gamers, String> entry : mScoreList.entrySet()) {
-            resultat +=  entry.getKey()
-                     + entry.getValue()+"\n";
-            i++;
-            if(i>4){
+        Collections.sort( mGamersList, new MyScoreComparator() );
+        for (int i = 0; i < mGamersList.size(); i++) {
+
+            if (i > 4) {
+
                 break;
             }
+
+            resultat += mGamersList.get( i );
+
+
+
         }
         return resultat;
     }
+}
+
+
+
 
 
 
@@ -92,4 +106,3 @@ return resultat;
     }*/
 
 
-}

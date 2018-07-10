@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  * Created by Aline de Alexandria e Pasquali Selle - OpenClassrooms on 06/07/2018.
  */
-public class MyName implements Comparator<Gamers> {
+public class MyNameComparator implements Comparator<Gamers> {
 
 
     @Override

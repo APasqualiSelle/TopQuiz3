@@ -34,7 +34,7 @@ public class Gamers {
     public String toString() {
         return
                 name + ":" +
-                score + " points.";
+                score + " points.\n";
     }
 
 

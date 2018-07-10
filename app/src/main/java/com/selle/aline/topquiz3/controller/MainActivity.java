@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private TopGamers mGamers;
 
 
+
+
     //variable pour recuperer un resultat dans ActivityResult()
     public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
     //creation d'un identifiant qui permet de recuperer le score en utilisant cet identifiant
@@ -42,11 +44,11 @@ public class MainActivity extends AppCompatActivity {
             //Fetch the score from the Intent
             int score = data.getIntExtra( GameActivity.BUNDLE_EXTRA_SCORE, 0 );
             mGamers.addGamerNameAndScore( mUser.getFirstName(), score );
-           mGamers.addScoreAndGamer( score, mUser.getFirstName() );
-            mPreferences.edit().putString( PREF_TOP_TOP_JOUEURS_SCORE, mGamers.printMapScore() ).apply();
-            mPreferences.edit().putString( PREF_KEY_TOP_JOUEURS, mGamers.printMapName() ).apply();
+          //  mGamers.addScoreAndGamer( score, mUser.getFirstName() );
+             mPreferences.edit().putString( PREF_TOP_TOP_JOUEURS_SCORE, mGamers.printScoreList() ).apply();
+            mPreferences.edit().putString( PREF_KEY_TOP_JOUEURS, mGamers.printNameList() ).apply();
             mDisplayGreetingTxt.setText( "estou no onActivityResult :-)" );
-            mTopJoeursButton.setVisibility(View.VISIBLE);
+            mTopJoeursButton.setVisibility( View.VISIBLE );
 
         }
     }
@@ -78,13 +80,12 @@ public class MainActivity extends AppCompatActivity {
         //mNameList = mPreferences.getString(PREF_KEY_NAME, "Player's list: ");
         //pour afficher les donnés recuperees:
 
-        mDisplayGreetingTxt.setText( "Oi, estou no método OnCreate, lala ;-) Welcome" +
-                " " );
+        mDisplayGreetingTxt.setText( "Oi, estou no método OnCreate, lala ;-) Welcome" + " " );
 
         //pour inactiver le boutton
         mPlayButton.setEnabled( false );
         //pour rendre le boutton invisible
-        mTopJoeursButton.setVisibility(View.GONE);
+        mTopJoeursButton.setVisibility( View.GONE );
 
         //pour activer le boutton lorsqu'un utilisateur tape un charactere dans le clavier
         mNameInput.addTextChangedListener( new TextWatcher() {
@@ -133,22 +134,21 @@ public class MainActivity extends AppCompatActivity {
         } );
 
 
-            mTopJoeursButton.setOnClickListener( new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent topJoueursIntent = new Intent( MainActivity.this, TopJoueurs.class );
-                    //avant startActivity, nous pouvons ajouter de données dans l'intent
-                    //à travers de la méthode putExtra
-                    // topJoueursIntent.putExtra(BUNDLE_EXTRA_FIRSTNAME,mFirstName);
-                    startActivity( topJoueursIntent );
+        mTopJoeursButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent topJoueursIntent = new Intent( MainActivity.this, TopJoueurs.class );
+                //avant startActivity, nous pouvons ajouter de données dans l'intent
+                //à travers de la méthode putExtra
+                // topJoueursIntent.putExtra(BUNDLE_EXTRA_FIRSTNAME,mFirstName);
+                startActivity( topJoueursIntent );
 
-                }
-            } );
-        }
-
-
-
+            }
+        } );
     }
+
+
+}
 
 
 

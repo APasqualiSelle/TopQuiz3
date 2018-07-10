@@ -13,7 +13,8 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
 
     private TextView mDisplayText;
     private String mGamersListScore;
-    private String mGamerList;
+    private String mNameList;
+
     private Button mScoreButton;
     private Button mNameButton;
 
@@ -32,16 +33,12 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
 
         SharedPreferences mPreferencesTopJoueurs = getSharedPreferences( MainActivity.PREF_KEY_TOP_JOUEURS, MODE_PRIVATE );
 
-       /* //j'ai besoin d'affecter les preferences dans le type String mLastPlayerName
-        mLastPlayerName = mPreferencesTopJoueurs.getString(MainActivity.PREF_KEY_FIRST_NAME, "Top Joueurs");
 
-        mLastScore = mPreferencesTopJoueurs.getInt(MainActivity.PREF_KEY_SCORE, 0);
-        //La façon de recuperer de données de l'intent de la main Activity
-        //mLastPlayerName = getIntent().getStringExtra(MainActivity.BUNDLE_EXTRA_FIRSTNAME);
-*/
-        mGamerList = mPreferencesTopJoueurs.getString( MainActivity.PREF_KEY_TOP_JOUEURS, "Por enquanto ninguém" );
+        mGamersListScore = mPreferencesTopJoueurs.getString(MainActivity.PREF_TOP_TOP_JOUEURS_SCORE,"0 points");
+
+        mNameList = mPreferencesTopJoueurs.getString( MainActivity.PREF_KEY_TOP_JOUEURS, "Por enquanto ninguém" );
         //pour afficher dans le TextView
-        mGamersListScore = mPreferencesTopJoueurs.getString( MainActivity.PREF_TOP_TOP_JOUEURS_SCORE, "Omg" );
+        //mGamersListScore = mPreferencesTopJoueurs.getString( MainActivity.PREF_TOP_TOP_JOUEURS_SCORE, "Omg" );
 
     }
 
@@ -55,7 +52,7 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
         switch (buttonClicked) {
             case R.id.activity_top_joueur_ordreAlphabetique_btn:
 
-                    mDisplayText.setText( mGamerList );
+                    mDisplayText.setText( mNameList );
 
 
                 break;
