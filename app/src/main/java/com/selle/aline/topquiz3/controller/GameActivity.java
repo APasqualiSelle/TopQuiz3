@@ -156,7 +156,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText( this, "Wrong answer!", Toast.LENGTH_SHORT ).show();
         }
 
-        mEnableTouchEvents = false;
+      mEnableTouchEvents = false;
         //pour améliorer l'experience de l'utilisateur(UX)
         //la méthode new Handler va nous permettre d'afficher les questions plus lentement
         //2000 milis = 2 seconds long
