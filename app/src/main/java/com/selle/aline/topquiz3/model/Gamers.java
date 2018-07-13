@@ -5,37 +5,38 @@ package com.selle.aline.topquiz3.model;
  */
 public class Gamers {
 
-    private String name;
-    private Integer score;
+    private String mName;
+    private Integer mScore;
 
     public Gamers(String name, Integer score){
 
-        this.name = name;
-        this.score = score;
+        this.mName = name;
+        this.mScore = score;
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.mName = name;
     }
 
     public Integer getScore() {
-        return score;
+        return mScore;
     }
 
     public void setScore(Integer score) {
-        this.score = score;
+        this.mScore = score;
     }
 
     @Override
     public String toString() {
         return
-                name + ":" +
-                score + " points.\n";
+                mName + ":" +
+                        mScore + " points.\n";
     }
+
 
 
 }

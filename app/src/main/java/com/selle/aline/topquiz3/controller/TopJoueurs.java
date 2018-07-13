@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.selle.aline.topquiz3.R;
 
+import java.util.Collections;
+
 public class TopJoueurs extends AppCompatActivity implements View.OnClickListener {
 
     private TextView mDisplayText;
@@ -32,7 +34,6 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
         mScoreButton.setOnClickListener( this );
 
         SharedPreferences mPreferencesTopJoueurs = getSharedPreferences( MainActivity.PREF_KEY_TOP_JOUEURS, MODE_PRIVATE );
-
 
         mGamersListScore = mPreferencesTopJoueurs.getString(MainActivity.PREF_TOP_TOP_JOUEURS_SCORE,"0 points");
 

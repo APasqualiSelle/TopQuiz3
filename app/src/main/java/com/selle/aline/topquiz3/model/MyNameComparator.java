@@ -8,10 +8,12 @@ import java.util.Comparator;
 public class MyNameComparator implements Comparator<Gamers> {
 
 
+
     @Override
     public int compare(Gamers name1, Gamers name2) {
 
 
-        return name1.getName().compareTo(name2.getName());
+
+        return name1.getName().compareTo( name2.getName() );
     }
 }

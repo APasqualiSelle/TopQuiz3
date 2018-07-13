@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private TopGamers mGamers;
 
 
-
-
     //variable pour recuperer un resultat dans ActivityResult()
     public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
     //creation d'un identifiant qui permet de recuperer le score en utilisant cet identifiant
@@ -44,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
             //Fetch the score from the Intent
             int score = data.getIntExtra( GameActivity.BUNDLE_EXTRA_SCORE, 0 );
             mGamers.addGamerNameAndScore( mUser.getFirstName(), score );
-          //  mGamers.addScoreAndGamer( score, mUser.getFirstName() );
-             mPreferences.edit().putString( PREF_TOP_TOP_JOUEURS_SCORE, mGamers.printScoreList() ).apply();
+            //  mGamers.addScoreAndGamer( score, mUser.getFirstName() );
+            mPreferences.edit().putString( PREF_TOP_TOP_JOUEURS_SCORE, mGamers.printScoreList() ).apply();
             mPreferences.edit().putString( PREF_KEY_TOP_JOUEURS, mGamers.printNameList() ).apply();
             mDisplayGreetingTxt.setText( "estou no onActivityResult :-)" );
             mTopJoeursButton.setVisibility( View.VISIBLE );
@@ -96,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //setEnabled: méthode pour activer le bouton dès que l'utilisateur tape
+                //le premier caractere de son nom
                 mPlayButton.setEnabled( s.toString().length() != 0 );
 
 
@@ -114,16 +114,6 @@ public class MainActivity extends AppCompatActivity {
                 //mémoriser le prenom du jouer dans l'objet mUser lorsqu'il clique sur le bouton
                 mUser.setFirstName( mNameInput.getText().toString() );
 
-                //copier le nom du utilisateur dans la mémoire permanente du téléphone à travers
-                //du SharedPreferences API
-                //edit()-->je souhaite éditer les valeurs de mPreferences
-                //putString-->je veux mettre une valeur dans mPreferences qui est du type String
-                //firstname --> s --> cest un nom attribuée à cette valeur, une clé creé par moi
-                //mUser.getFirstName()-->je recupere le nom du utilisateur dans le modele User
-                // a travers de la variable mUser qui a été crée dans le controller
-                //apply()--> appliquer les modifications sur mPreferences
-
-
                 //pour demarrer la GameActivity
                 Intent gameActivityIntent = new Intent( MainActivity.this, GameActivity.class );
 
@@ -138,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent topJoueursIntent = new Intent( MainActivity.this, TopJoueurs.class );
-                //avant startActivity, nous pouvons ajouter de données dans l'intent
+                //avant startActivity, nous pouvons ajouter de données dans l'intent, example:
                 //à travers de la méthode putExtra
                 // topJoueursIntent.putExtra(BUNDLE_EXTRA_FIRSTNAME,mFirstName);
                 startActivity( topJoueursIntent );

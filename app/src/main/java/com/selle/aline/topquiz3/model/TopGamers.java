@@ -18,11 +18,62 @@ public class TopGamers {
 
 
     public void addGamerNameAndScore(String firstName, Integer score) {
+        boolean isFirstNameAlreadyAdded = false;
+        //equalsIgnoreCase cest une methode de String qui retourne vrai ou false
+        for (int i = 0; i < mGamersList.size(); i++) {
+            if (mGamersList.get( i ).getName().equalsIgnoreCase( firstName )) {
 
-        mGamersList.add( new Gamers( firstName, score ) );
+                isFirstNameAlreadyAdded = true;
+                if (mGamersList.get( i ).getScore() < score) {
+
+                    mGamersList.remove( i );
+                    isFirstNameAlreadyAdded = false;
+                }
+
+            }
+        }
+
+        //c'est la même chose que : if(isFirstNameAlreadyAdded == false) -->donc vraie
+        if (!isFirstNameAlreadyAdded) {
+
+            if (mGamersList.size() == 5) {
+                //Collections.sort(mGamersList, new MyScoreComparator());
+                Gamers leDernierdeLaListe = Collections.max( mGamersList, new MyScoreComparator() );
+                if (leDernierdeLaListe.getScore() < score) {
+
+                    mGamersList.remove( leDernierdeLaListe );
 
 
+                    mGamersList.add( new Gamers( firstName, score ) );
+                }
+            } else {
+                mGamersList.add( new Gamers( firstName, score ) );
+            }
+
+        }
     }
+
+
+
+       /* boolean added = false;
+
+        for (int i = 0; i < mGamersList.size(); i++) {
+            if (mGamersList.get( i ).getName().equalsIgnoreCase( firstName )) {
+                if (score > mGamersList.get( i ).getScore()) {
+                   mGamersList.remove(i);
+                   added = true;
+                    mGamersList.add( new Gamers( firstName, score ) );
+                }
+
+            }
+        }
+        if(!added){
+            mGamersList.add( new Gamers( firstName, score ) );
+        }*/
+
+
+
+
 
     /*public void addScoreAndGamer(Integer score, String firstName) {
 
@@ -37,7 +88,6 @@ public class TopGamers {
         String resultat = "";
         Collections.sort( mGamersList, new MyNameComparator() );
         for (int i = 0; i < mGamersList.size(); i++) {
-
 
             if (i > 4) {
 
@@ -61,7 +111,6 @@ public class TopGamers {
             }
 
             resultat += mGamersList.get( i );
-
 
 
         }
