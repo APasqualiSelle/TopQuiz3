@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
-
+        System.out.println( "MainActivity::OnCreate()" );
         //initliaser le type User dans la méthode OnCreate
         mUser = new User();
         //initialiser le type TopGamers dans la méthode OnCreate
@@ -135,6 +135,40 @@ public class MainActivity extends AppCompatActivity {
 
             }
         } );
+    }
+    @Override
+    protected void onStart () {
+        super.onStart();
+
+        System.out.println( "MainActivity::onStart()" );
+    }
+
+    @Override
+    protected void onResume () {
+        super.onResume();
+
+        System.out.println( "MainActivity::onResume()" );
+    }
+
+    @Override
+    protected void onPause () {
+        super.onPause();
+
+        System.out.println( "MainActivity::onPause()" );
+    }
+
+    @Override
+    protected void onStop () {
+        super.onStop();
+
+        System.out.println( "MainActivity::onStop()" );
+    }
+
+    @Override
+    protected void onDestroy () {
+        super.onDestroy();
+
+        System.out.println( "MainActivity::onDestroy()" );
     }
 
 

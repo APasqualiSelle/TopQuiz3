@@ -3,6 +3,7 @@ package com.selle.aline.topquiz3.controller;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.os.PersistableBundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,15 +36,26 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     //creation d'un identifiant qui permet de recuperer le score en utilisant cet identifiant
     public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
 
+    public static final String BUNDLE_STATE_SCORE = "currentScore";
+    public static final String BUNDLE_STATE_QUESTION = "currentQuestion";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_game );
 
-
+        System.out.println( "GameActivity::onCreate()" );
         mScore = 0;
         mNumberOfQuestions = 6;
+        if(savedInstanceState != null){
+
+            mScore = savedInstanceState.getInt(BUNDLE_STATE_SCORE);
+            mNumberOfQuestions = savedInstanceState.getInt(BUNDLE_STATE_QUESTION);
+        }
+
+
+        mEnableTouchEvents = true;
 
         // Wire widgets
         mQuestionTextView = (TextView) findViewById( R.id.activity_game_question_text );
@@ -129,6 +141,23 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 question9 ) );
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putInt(BUNDLE_STATE_SCORE, mScore);
+        outState.putInt(BUNDLE_STATE_QUESTION, mNumberOfQuestions);
+        super.onSaveInstanceState( outState);
+    }
+
+
+    /* @Override
+    protected void onSaveInstanceState(Bundle outState){
+
+        outState.putInt(BUNDLE_STATE_SCORE, mScore);
+        outState.putInt(BUNDLE_STATE_QUESTION, mNumberOfQuestions);
+        //il faut créer the Constant pour récuperer des valeurs
+        super.onSaveInstanceState( outState );
+    }*/
+
 
     @Override
     public void onClick(View view) {
@@ -156,10 +185,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText( this, "Wrong answer!", Toast.LENGTH_SHORT ).show();
         }
 
-      mEnableTouchEvents = false;
+        mEnableTouchEvents = false;
         //pour améliorer l'experience de l'utilisateur(UX)
         //la méthode new Handler va nous permettre d'afficher les questions plus lentement
         //2000 milis = 2 seconds long
+
+
         new Handler().postDelayed( new Runnable() {
 
             @Override
@@ -180,14 +211,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }, 2000 );//LENGHT_SHORT is usually 2 second long
 
     }
-        @Override
-        public boolean dispatchTouchEvent(MotionEvent ev){
-            return mEnableTouchEvents && super.dispatchTouchEvent(ev);
-        }
 
-
-
-
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return mEnableTouchEvents && super.dispatchTouchEvent( ev );
+    }
 
 
     private void endGame() {
@@ -209,6 +237,43 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 } )
                 .create()
                 .show();
+    }
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        System.out.println( "MainActivity::onStart()" );
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        System.out.println( "MainActivity::onResume()" );
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        System.out.println( "MainActivity::onPause()" );
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        System.out.println( "MainActivity::onStop()" );
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        System.out.println( "MainActivity::onDestroy()" );
     }
 
 

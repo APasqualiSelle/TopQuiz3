@@ -19,11 +19,13 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
 
     private Button mScoreButton;
     private Button mNameButton;
+    private SharedPreferences mPreferencesTopJoueurs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_top_joueurs );
+        System.out.println("TopJoueurActivity::OnCreate()");
 
         mNameButton = findViewById( R.id.activity_top_joueur_ordreAlphabetique_btn );
         mScoreButton = findViewById( R.id.activity_top_joueurs_score_btn );
@@ -33,7 +35,7 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
         mNameButton.setOnClickListener( this );
         mScoreButton.setOnClickListener( this );
 
-        SharedPreferences mPreferencesTopJoueurs = getSharedPreferences( MainActivity.PREF_KEY_TOP_JOUEURS, MODE_PRIVATE );
+         mPreferencesTopJoueurs = getSharedPreferences( MainActivity.PREF_KEY_TOP_JOUEURS, MODE_PRIVATE );
 
         mGamersListScore = mPreferencesTopJoueurs.getString(MainActivity.PREF_TOP_TOP_JOUEURS_SCORE,"0 points");
 
@@ -41,8 +43,9 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
         //pour afficher dans le TextView
         //mGamersListScore = mPreferencesTopJoueurs.getString( MainActivity.PREF_TOP_TOP_JOUEURS_SCORE, "Omg" );
 
-    }
 
+
+        }
 
 
     @Override
@@ -65,4 +68,41 @@ public class TopJoueurs extends AppCompatActivity implements View.OnClickListene
 
         }
     }
+
+    @Override
+    protected void onStart () {
+        super.onStart();
+
+        System.out.println( "MainActivity::onStart()" );
+    }
+
+    @Override
+    protected void onResume () {
+        super.onResume();
+
+        System.out.println( "MainActivity::onResume()" );
+    }
+
+    @Override
+    protected void onPause () {
+        super.onPause();
+
+        System.out.println( "MainActivity::onPause()" );
+    }
+
+    @Override
+    protected void onStop () {
+        super.onStop();
+
+        System.out.println( "MainActivity::onStop()" );
+    }
+
+    @Override
+    protected void onDestroy () {
+        super.onDestroy();
+
+        System.out.println( "MainActivity::onDestroy()" );
+    }
+
+
 }

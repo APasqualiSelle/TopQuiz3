@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class QuestionBank {
 
-    private List<Question>mQuestionList;
+    private List<Question> mQuestionList;
     private int mNextQuestionIndex;
 
     public QuestionBank(List<Question>questionList){
