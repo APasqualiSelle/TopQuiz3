@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences mPreferences;
     public static final String PREF_KEY_TOP_JOUEURS = "PREF_KEY_TOP_JOUEURS";
     public static final String PREF_TOP_TOP_JOUEURS_SCORE = "PREF_KEY_TOP_JOUEURS_SCORE";
+    public static final String PREF_KEY_FIRSTNAME = "PREF_KEY_FIRSTNAME";
+    public static final String PREF_KEY_SCORE = "PREF_KEY_SCORE";
+
+
 
     //pour recuperer une valeur d'une autre activity nous utilisons la methode
     //onActivityResult
@@ -41,12 +45,14 @@ public class MainActivity extends AppCompatActivity {
         if (GAME_ACTIVITY_REQUEST_CODE == requestCode && RESULT_OK == resultCode) {
             //Fetch the score from the Intent
             int score = data.getIntExtra( GameActivity.BUNDLE_EXTRA_SCORE, 0 );
+            mPreferences.edit().putInt(PREF_KEY_SCORE, score).apply();
             mGamers.addGamerNameAndScore( mUser.getFirstName(), score );
             //  mGamers.addScoreAndGamer( score, mUser.getFirstName() );
             mPreferences.edit().putString( PREF_TOP_TOP_JOUEURS_SCORE, mGamers.printScoreList() ).apply();
             mPreferences.edit().putString( PREF_KEY_TOP_JOUEURS, mGamers.printNameList() ).apply();
-            mDisplayGreetingTxt.setText( "estou no onActivityResult :-)" );
             mTopJoeursButton.setVisibility( View.VISIBLE );
+            mPreferences.edit().putString(PREF_KEY_FIRSTNAME, mUser.getFirstName()).apply();
+            greetUser();
 
         }
     }
@@ -78,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         //mNameList = mPreferences.getString(PREF_KEY_NAME, "Player's list: ");
         //pour afficher les donnés recuperees:
 
-        mDisplayGreetingTxt.setText( "Oi, estou no método OnCreate, lala ;-) Welcome" + " " );
+        mDisplayGreetingTxt.setText( " Welcome on  OnCreateActivity()" );
 
         //pour inactiver le boutton
         mPlayButton.setEnabled( false );
@@ -113,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //mémoriser le prenom du jouer dans l'objet mUser lorsqu'il clique sur le bouton
                 mUser.setFirstName( mNameInput.getText().toString() );
-
+                mPreferences.edit().putString(PREF_KEY_FIRSTNAME, mUser.getFirstName()).apply();
                 //pour demarrer la GameActivity
                 Intent gameActivityIntent = new Intent( MainActivity.this, GameActivity.class );
 
@@ -135,7 +141,25 @@ public class MainActivity extends AppCompatActivity {
 
             }
         } );
+
+        }
+
+    private void greetUser() {
+        String firstname = mPreferences.getString( PREF_KEY_FIRSTNAME, null );
+
+        if (null != firstname) {
+            int score = mPreferences.getInt( PREF_KEY_SCORE, 0 );
+
+            String fulltext = "Welcome back, " + firstname
+                    + "!\nYour last score was " + score
+                    + ", will you do better this time?";
+            mDisplayGreetingTxt.setText( fulltext );
+            mNameInput.setText( firstname );
+            mNameInput.setSelection( firstname.length() );
+            mPlayButton.setEnabled( true );
+        }
     }
+
     @Override
     protected void onStart () {
         super.onStart();

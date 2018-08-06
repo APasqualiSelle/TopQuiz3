@@ -27,15 +27,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Button mAnswerButton2;
     private Button mAnswerButton3;
     private Button mAnswerButton4;
+
     private QuestionBank mQuestionBank;
     private Question mCurrentQuestion;
+
     private int mScore;
     private int mNumberOfQuestions;
+
     private boolean mEnableTouchEvents;
 
     //creation d'un identifiant qui permet de recuperer le score en utilisant cet identifiant
     public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
-
     public static final String BUNDLE_STATE_SCORE = "currentScore";
     public static final String BUNDLE_STATE_QUESTION = "currentQuestion";
 
@@ -46,14 +48,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setContentView( R.layout.activity_game );
 
         System.out.println( "GameActivity::onCreate()" );
-        mScore = 0;
-        mNumberOfQuestions = 6;
-        if(savedInstanceState != null){
 
-            mScore = savedInstanceState.getInt(BUNDLE_STATE_SCORE);
-            mNumberOfQuestions = savedInstanceState.getInt(BUNDLE_STATE_QUESTION);
+        if(savedInstanceState != null) {
+
+                mScore = savedInstanceState.getInt( BUNDLE_STATE_SCORE );
+                mNumberOfQuestions = savedInstanceState.getInt( BUNDLE_STATE_QUESTION );
+
+        }else {
+            mScore=0;
+            mNumberOfQuestions = 6;
         }
-
+        mQuestionBank = this.generateQuestions();
 
         mEnableTouchEvents = true;
 
@@ -78,11 +83,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mAnswerButton3.setOnClickListener( this );
         mAnswerButton4.setOnClickListener( this );
 
-        mQuestionBank = this.generateQuestions();
+
         mCurrentQuestion = mQuestionBank.getQuestion();
         this.displayQuestion( mCurrentQuestion );
 
     }
+
+
 
     //getChoiceList() is a method from the class Question that returns a list of String
     private void displayQuestion(final Question question) {
@@ -141,22 +148,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 question9 ) );
     }
 
+    //the method onSaveInstanceState(Bundle outState) is used to avoid the changing question
+    //when we turn the phone or portrait
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putInt(BUNDLE_STATE_SCORE, mScore);
         outState.putInt(BUNDLE_STATE_QUESTION, mNumberOfQuestions);
+
         super.onSaveInstanceState( outState);
     }
-
-
-    /* @Override
-    protected void onSaveInstanceState(Bundle outState){
-
-        outState.putInt(BUNDLE_STATE_SCORE, mScore);
-        outState.putInt(BUNDLE_STATE_QUESTION, mNumberOfQuestions);
-        //il faut créer the Constant pour récuperer des valeurs
-        super.onSaveInstanceState( outState );
-    }*/
 
 
     @Override
@@ -235,6 +235,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
                     }
                 } )
+                //what is .setCancelable for?
+                .setCancelable(false)
                 .create()
                 .show();
     }

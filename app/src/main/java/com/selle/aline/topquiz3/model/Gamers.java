@@ -15,18 +15,22 @@ public class Gamers {
     }
 
     public String getName() {
+
         return mName;
     }
 
     public void setName(String name) {
+
         this.mName = name;
     }
 
     public Integer getScore() {
+
         return mScore;
     }
 
     public void setScore(Integer score) {
+
         this.mScore = score;
     }
 
